@@ -1,0 +1,16 @@
+Config {
+    font        =   "monofur 20",
+    bgColor     =   "#1e1e2e",
+    fgColor     =   "#cdd6f4",
+    position    =   TopSize L 100 30,
+    template    =   "    %UnsafeStdinReader%}󰻠 %multicpu%    󰍛 %memory%    󰀂 %enp6s0%{%date%    ",
+    lowerOnStart =  True,
+    overrideRedirect = False,
+    commands    =   [
+        Run UnsafeStdinReader,
+        Run MultiCpu ["-t", "<total>%"] 50,
+        Run Memory ["-t", "<used>/<total> MB"] 50,
+        Run Network "enp6s0" ["-t", "  <rx>KB   <tx>KB"] 10,
+        Run Date "%A %d/%m/%Y %H:%M:%S" "date" 10
+    ]
+}
