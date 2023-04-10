@@ -1,6 +1,7 @@
 import Xmobar
 
 
+xmonadLogs = Run XMonadLog
 cpuMonitor = Run $ MultiCpu ["-t", "<total>%"] 50
 memoryMonitor = Run $ Memory ["-t", "<usedratio>%"] 50
 networkMonitor = Run $ Network "wlp1s0" ["-t", "<rx>KB <tx>KB"] 10
@@ -27,6 +28,7 @@ dateMonitor = Run $ Date "%A %d/%m/%Y %H:%M:%S" "date" 10
 
 myCommands :: [Runnable]
 myCommands = [
+        xmonadLogs,
         cpuMonitor,
         memoryMonitor,
         networkMonitor,
@@ -36,7 +38,7 @@ myCommands = [
     ]
 
 myTemplate =
-       " }"
+       " %XMonadLog% }"
     ++ "\xf0ee0 %multicpu% | \xf035b %memory% | \xf0002 %wlp1s0% | %battery%"
     ++ "{ \xf11c %kbd% | %date% "
 

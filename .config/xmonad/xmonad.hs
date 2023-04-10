@@ -1,13 +1,11 @@
 import XMonad
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen,)
-import XMonad.Hooks.StatusBar
-import XMonad.Hooks.StatusBar.PP
+import XMonad.Hooks.StatusBar (statusBarProp, withEasySB, defToggleStrutsKey,)
 import XMonad.Util.EZConfig (additionalKeys,)
 
 import MyKeys (myKeys, myModMask)
 import MyLayouts (myLayouts,)
-import MyLogHooks (myLogHook,)
+import MyLogHooks (statusBarPP,)
 
 
 myWorkspaces = ["\xf489", "\xe73c", "\xe745", "\xf04b1", "\xf0361"]
@@ -17,19 +15,17 @@ myConfig = def
         modMask    = myModMask,
         terminal   = "st",
         layoutHook = myLayouts,
-        workspaces = myWorkspaces,
-        logHook = myLogHook
+        workspaces = myWorkspaces
     }
     `additionalKeys`
     myKeys
 
-myXmobarPP :: PP
-myXmobarPP = def
+myStatusBar = statusBarProp "/home/langtano/.config/xmonad/lib/MyXmobar" (pure statusBarPP)
 
 main :: IO ()
 main = do
     xmonad
     . ewmhFullscreen
     . ewmh
-    -- . withEasySB (statusBarProp "/home/langtano/.config/xmonad/lib/MyXmobar" (pure myXmobarPP)) defToggleStrutsKey
+    . withEasySB myStatusBar defToggleStrutsKey
     $ myConfig

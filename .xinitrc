@@ -9,7 +9,8 @@ trayer\
     --expand true\
     --width 10\
     --transparent true\
-    --tint 0x5f5f5f\
+    --alpha 0\
+    --tint 0x1e1e2e\
     --height 30 &
 
 # Set the default X cursor to the usual pointer
