@@ -11,3 +11,5 @@ vim.opt.smartindent = true
 vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = "90"
+
+vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
